@@ -1,0 +1,37 @@
+body {
+    background-color: #fafafa;
+}
+
+.task {
+    border: silver solid 1px;
+    border-radius: 0.25rem;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.completed {
+    background-color: #eeeeee;
+}
+
+.completed  p {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.not-completed {
+    background-color: white;
+}
+
+.created-at {
+    font-size: 0.7rem;
+    color: gray;
+}
+
+.del-task {
+    color: #fe6993;
+    background-color: rgba(256, 105, 147, 0.1);
+    border: 3px;
+    padding: 0.2em;
+    line-height: 2em;
+}

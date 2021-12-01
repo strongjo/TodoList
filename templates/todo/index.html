@@ -1,0 +1,50 @@
+{% extends "todo/base.html" %}
+
+{% block body %}
+    <div class="row">
+        <form action="{% url 'add' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Add tasks" name="task">
+                <button class="btn btn-primary" type="submit">ADD</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    {% for task in tasks %}
+        {% if task.completed %}
+            <div class="row completed task">
+                <div class="col-md-6">
+                    <p class="fw-bold my-0">{{ task.task }}</p>
+                    <p class="created-at mt-0">Created at: {{ task.created_at }}</p>
+                    {% if task.updated_at > task.created_at %}
+                        <p class="created-at">Updated at: {{ task.updated_at }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="{% url 'update' task.id %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'delete' task.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="row not-completed task">
+                <div class="col-md-6">
+                    <p class="fw-bold my-0">{{ task.task }}</p>
+                    <p class="created-at mt-0">Created at: {{ task.created_at }}</p>
+                    {% if task.updated_at > task.created_at %}
+                        <p class="created-at">Updated at: {{ task.updated_at }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="{% url 'complete' task.id %}" class="btn btn-success">Completed</a>
+                    <a href="{% url 'update' task.id %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'delete' task.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
